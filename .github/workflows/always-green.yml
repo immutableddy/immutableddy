@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  schedule:
+    - cron:  '*/59 * * * *'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run a one-line script
+        run: |
+          git config user.name immutableddy
+          git config user.email eddy@reproducible.sh
+          git commit --allow-empty -m "Always green!"
+          git push
